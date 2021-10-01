@@ -20,10 +20,15 @@ And assigns this certificate to an Ingress
 Jitsu configurator is creates a ClusterIp service and can be accessed only via private IP/port forwarding
 
 
-# terraform dir contains all relevant resources needed for this deployment to operate
+### terraform dir contains all relevant resources needed for this deployment to operate
 - GCP service account
   - workload identity mapping
 - reserved static ip
 - ingress dns record set ( assuming google hosted zones are connected to a public dns )
 - maxmind GCS bucket
   - granting jitsu SA Object Admin role on maxmind bucket
+
+
+### best install this chart using argocd
+
+Cheers
