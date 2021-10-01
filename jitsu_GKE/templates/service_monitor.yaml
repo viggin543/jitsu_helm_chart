@@ -1,0 +1,23 @@
+{{- if .Values.jitsu.monitoring.enabled}}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ $.Release.Name }}
+  labels:
+    release: {{ .Values.promRelease }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+  endpoints:
+    - port: configurator
+      path: /prometheus
+      params:
+        token:
+          - iddqd
+      interval: 10s
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+{{- end}}

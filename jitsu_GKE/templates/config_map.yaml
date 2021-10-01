@@ -1,0 +1,15 @@
+{{- range $path, $_ :=  .Files.Glob  "config/*.yaml" }}
+  {{- $filename := trimSuffix (ext $path) (base $path) }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $filename }}
+  namespace: jitsu
+  labels:
+    app.kubernetes.io/managed-by: {{ $.Release.Name }}
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+data:
+  {{ base $path }}: |-
+{{ $.Files.Get $path  }}
+---
+  {{- end }}

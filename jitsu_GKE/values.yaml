@@ -1,0 +1,43 @@
+
+name: staging-jitsu
+# used by external DNS
+domain: .subdomain.domain
+
+ingress:
+  certificateName: jitsu-staging
+  elbDomainName: jitsu-api.subdomain.domain
+  allowHttp: true
+## name of static ip reserved in GCP
+  reserevedIp: jitsu-static-ip
+
+workloadIdentityServiceAccount: "jitsu-server@GCP_PROJECT_ID.iam.gserviceaccount.com"
+
+jitsu:
+# even if bucket does not exist jitsu sts will start
+  maxmind:
+    bucketName: some-bucket
+    fileName: GeoLite2-City.mmdb
+  redisUrl: "redis://redis-headless.redis.svc.cluster.local:6379"
+  userRecgnitionEnabled: true
+  monitoring:
+    enabled: true
+    promRelease: some-prometheus-operator
+
+
+sts:
+  replicas: 3
+  nodeSelector: spot-2-8
+  image: jitsucom/jitsu:latest
+  volumes:
+    logsSize: 1Gi
+    eventsSize: 1Gi
+    configSize: 1Gi
+    maxmindSize: 100Mi
+
+resources:
+  requests:
+    memory: "100Mi"
+    cpu: "100m"
+  limits:
+    memory: "4Gi"
+    cpu: "400m"

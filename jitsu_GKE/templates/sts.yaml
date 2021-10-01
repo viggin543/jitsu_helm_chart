@@ -1,0 +1,137 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  serviceName: {{ .Release.Name }}
+  replicas: {{.Values.sts.replicas}}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: {{.Values.sts.nodeSelector}}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app.kubernetes.io/component: {{ .Release.Name }}
+                  app.kubernetes.io/name: {{ .Release.Name }}
+              topologyKey: kubernetes.io/hostname
+      serviceAccountName: jitsu-sa
+      initContainers:
+        - name: take-data-dir-ownership
+          image: alpine:3
+          command:
+            - sh
+            - -c
+            - |
+              #todo - chmod only if needed
+              set -x
+              chmod -R 777 /home/eventnative
+              chmod -R 777 /home/configurator
+          volumeMounts:
+            - name: logs
+              mountPath: /home/eventnative/data/logs
+            - name: events
+              mountPath: /home/eventnative/data/logs/events
+            - name: config
+              mountPath: /home/configurator/data/logs
+        - name: maxmind-db-downloader
+          image: google/cloud-sdk:alpine
+          command:
+            - sh
+            - -c
+            - |
+              set -x
+              gsutil cp gs://{{.Values.jitsu.maxmind.bucketName}}/{{.Values.jitsu.maxmind.fileName}} /home/mmdb
+              echo "done"
+          volumeMounts:
+            - name: mmdb
+              mountPath: /home/mmdb
+      containers:
+        - name: {{ .Release.Name }}
+          image: {{ .Values.sts.image }}
+          ports:
+            - containerPort: 8000
+              name: configurator
+            - containerPort: 8001
+              name: api
+            - containerPort: 7000
+              name: server
+          env:
+            - name: REDIS_URL
+              value: {{ .Values.jitsu.redisUrl }}
+            - name: UI_AUTH_REFRESH_SECRET
+              value: S74gdzFdazr
+            - name: UI_AUTH_ACCESS_SECRET
+              value: Cx55pMEFFN
+            - name: GIN_MODE
+              value: debug
+            - name: SERVER_ADMIN_TOKEN
+              value: iddqd
+            - name: CONFIGURATOR_ADMIN_TOKEN
+              value: idclip
+            - name: MAX_MIND_PATH
+              value: /home/mmdb/GeoLite2-City.mmdb
+            - name: USER_RECOGNITION_ENABLED
+              value: "{{ .Values.jitsu.userRecgnitionEnabled }}"
+          volumeMounts:
+            - name: logs
+              mountPath: /home/eventnative/data/logs
+            - name: events
+              mountPath: /home/eventnative/data/logs/events
+            - name: config
+              mountPath: /home/configurator/data/logs
+            - name: jitsu-config
+              mountPath: /home/eventnative/data/config/eventnative.yaml
+              subPath: eventnative.yaml
+            - name: configurator-config
+              mountPath: /home/configurator/data/config/configurator.yaml
+              subPath: configurator.yaml
+            - name: mmdb
+              mountPath: /home/mmdb
+          resources:
+      {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: jitsu-config
+          configMap:
+            name: eventnative
+        - name: configurator-config
+          configMap:
+            name: configurator
+  volumeClaimTemplates:
+    - metadata:
+        name: logs
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: {{.Values.sts.volumes.logsSize}}
+    - metadata:
+        name: events
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: {{.Values.sts.volumes.eventsSize}}
+    - metadata:
+        name: config
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: {{.Values.sts.volumes.configSize}}
+    - metadata:
+        name: mmdb
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: {{.Values.sts.volumes.maxmindSize}}

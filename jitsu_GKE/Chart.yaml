@@ -1,0 +1,7 @@
+apiVersion: v1
+name: jitsu
+description: Deploy jitsu server
+version: 0.1.0
+home: github.com/viggin543/jitsu_helm_chart/jitsu
+sources:
+  - https://github.com/viggin543/jitsu_helm_chart/jitsu

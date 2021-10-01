@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Release.Name }}
+spec:
+  type: NodePort
+  selector:
+    app: {{ .Release.Name }}
+  ports:
+    - protocol: TCP
+      port: 80
+      name: api
+      targetPort: 8001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Release.Name }}-configurator
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: jitsu-configurator.{{ .Values.domain }}
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ .Release.Name }}
+  ports:
+    - protocol: TCP
+      name: configurator
+      port: 80
+      targetPort: 8000
+    - protocol: TCP
+      port: 7000
+      name: server
+      targetPort: 7000

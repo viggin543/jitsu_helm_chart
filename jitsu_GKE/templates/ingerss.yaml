@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $.Release.Name }}
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: {{ .Values.ingress.reserevedIp }}
+    networking.gke.io/managed-certificates: {{ .Values.ingress.certificateName }}
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.allow-http: "{{ .Values.ingress.allowHttp }}"
+spec:
+  defaultBackend:
+    service:
+      name: {{ $.Release.Name }}
+      port:
+        number: 80
