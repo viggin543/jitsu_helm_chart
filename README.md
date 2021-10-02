@@ -24,8 +24,7 @@ Dependencies:
 - [External DNS](https://github.com/kubernetes-sigs/external-dns) is installed in the cluster
   - if not chart will still work
 
-<img alt="img_6.png" src="./readme_assets/img_6.png" width="80"/>
-<img alt="img_7.png" src="./readme_assets/edns.png" width="80"/>
+<img alt="img_6.png" src="./readme_assets/img_6.png" width="80"/> <img alt="img_7.png" src="./readme_assets/edns.png" width="80"/>
 
 This chart creates a [ManagedCertificate](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs) 
 - a GKE resource that will provision a TLS certificate
