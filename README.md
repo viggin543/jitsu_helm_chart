@@ -9,7 +9,7 @@
 
 <p align="center">
 <img alt="img_3.png" src="./readme_assets/img_3.png"/>
-</p>
+<p align="center">
 
 This chart assumes:
 - a GKE cluster with workload identity enabled on cluster
@@ -35,8 +35,9 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 
 ---
 ## terraform
-![img_4.png](./readme_assets/img_4.png)
-
+<p align="center">
+  <img alt="img_4.png" src="./readme_assets/img_4.png" width="150"/>
+<p align="center">
 `terraform` directory contains all relevant resources needed for this deployment to operate
 - GCP service account
   - workload identity mapping
