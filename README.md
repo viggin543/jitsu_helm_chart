@@ -60,6 +60,7 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 <p align="center">
   <img alt="img.png" src="./readme_assets/img.png"/>
 </p>
+
 ---
 
 
