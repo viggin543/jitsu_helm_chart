@@ -28,6 +28,8 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 
 ---
 ## terraform
+![img_4.png](img_4.png)
+
 `terraform` directory contains all relevant resources needed for this deployment to operate
 - GCP service account
   - workload identity mapping
@@ -38,6 +40,8 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 
 
 ### Best install this chart using [argocd](https://argo-cd.readthedocs.io/en/stable/)
+![img_5.png](img_5.png)
+
 ![img.png](img.png)
 
 
