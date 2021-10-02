@@ -9,7 +9,7 @@
 
 <p align="center">
 <img alt="img_3.png" src="./readme_assets/img_3.png"/>
-<p align="center">
+</p>
 
 This chart assumes:
 - a GKE cluster with workload identity enabled on cluster
