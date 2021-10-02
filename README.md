@@ -1,9 +1,12 @@
-<p align="center">
-<img alt="img_2.png" src="./readme_assets/img_2.png"/>
-</p>
+
 
 # JITSU helm chart
-![img_1.png](./readme_assets/img_1.png)
+<p align="center">
+<img alt="img_2.png" src="./readme_assets/img_2.png" width="150"/>
+<img alt="img_1.png" src="./readme_assets/img_1.png"/>
+</p>
+
+
 
 ## For google k8s service
 
