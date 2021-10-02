@@ -40,7 +40,7 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 </p>
 
 
-`terraform` directory contains all relevant resources needed for this deployment to operate
+`terraform` directory contains all relevant resources needed for this deployment to operate on GKE
 - GCP service account
   - workload identity mapping
 - reserved static ip
