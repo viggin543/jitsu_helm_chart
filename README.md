@@ -1,9 +1,10 @@
-# JITSU helm chart
-![img_1.png](img_1.png)
+![img_2.png](./readme_assets/img_2.png)
 
-![img_2.png](img_2.png)
+# JITSU helm chart
+![img_1.png](./readme_assets/img_1.png)
+
 ## For google k8s service
-![img_3.png](img_3.png)
+![img_3.png](./readme_assets/img_3.png)
 
 This chart assumes:
 - a GKE cluster with workload identity enabled on cluster
@@ -13,9 +14,9 @@ This chart assumes:
 
 Dependencies:
 - Redis connection string 
-- This chart assumes [prometheus operator](https://github.com/bitnami/charts/tree/master/bitnami/kube-prometheus/#installing-the-chart) is installed on the cluster
+- ![img_6.png](./readme_assets/img_6.png) This chart assumes [prometheus operator](https://github.com/bitnami/charts/tree/master/bitnami/kube-prometheus/#installing-the-chart) is installed on the cluster 
   - disable monitoring in values file if not
-- [External DNS](https://github.com/kubernetes-sigs/external-dns) is installed in the cluster
+- ![img_7.png](./readme_assets/edns.png)  [External DNS](https://github.com/kubernetes-sigs/external-dns) is installed in the cluster
   - if not chart will still work
 
 
@@ -28,7 +29,7 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 
 ---
 ## terraform
-![img_4.png](img_4.png)
+![img_4.png](./readme_assets/img_4.png)
 
 `terraform` directory contains all relevant resources needed for this deployment to operate
 - GCP service account
@@ -40,9 +41,10 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 
 
 ### Best install this chart using [argocd](https://argo-cd.readthedocs.io/en/stable/)
-![img_5.png](img_5.png)
 
-![img.png](img.png)
+![img_5.png](./readme_assets/img_5.png)
+
+![img.png](./readme_assets/img.png)
 
 
 With slight modifications this chart can be installed on any k8s.
