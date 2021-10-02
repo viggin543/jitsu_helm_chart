@@ -63,6 +63,9 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 
 
 ```bash
+
+git@github.com:viggin543/jitsu_helm_chart.git
+
 # view generated k8s manifests
 helm template jitsu_GKE --values jitsu_GKE/values.yaml --debug
 
