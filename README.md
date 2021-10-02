@@ -1,4 +1,6 @@
+<p align="center">
 <img alt="img_2.png" src="./readme_assets/img_2.png"/>
+</p>
 
 # JITSU helm chart
 ![img_1.png](./readme_assets/img_1.png)
