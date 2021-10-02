@@ -37,10 +37,10 @@ This chart creates a [ManagedCertificate](https://cloud.google.com/kubernetes-en
 Jitsu configurator is created as a ClusterIp service and can be accessed only via private IP/port forwarding
 
 ---
+
 ## terraform
-<p align="center">
-  <img alt="img_4.png" src="./readme_assets/img_4.png" width="100"/>
-</p>
+
+<img alt="img_4.png" src="./readme_assets/img_4.png" width="100"/>
 
 
 `terraform` directory contains all relevant resources needed for this deployment to operate on GKE
