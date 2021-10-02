@@ -38,6 +38,8 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 <p align="center">
   <img alt="img_4.png" src="./readme_assets/img_4.png" width="150"/>
 <p align="center">
+
+
 `terraform` directory contains all relevant resources needed for this deployment to operate
 - GCP service account
   - workload identity mapping
