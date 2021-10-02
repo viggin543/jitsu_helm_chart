@@ -19,11 +19,13 @@ This chart assumes:
 
 Dependencies:
 - Redis connection string 
-- ![img_6.png](./readme_assets/img_6.png) This chart assumes [prometheus operator](https://github.com/bitnami/charts/tree/master/bitnami/kube-prometheus/#installing-the-chart) is installed on the cluster 
+- This chart assumes [prometheus operator](https://github.com/bitnami/charts/tree/master/bitnami/kube-prometheus/#installing-the-chart) is installed on the cluster 
   - disable monitoring in values file if not
-- ![img_7.png](./readme_assets/edns.png)  [External DNS](https://github.com/kubernetes-sigs/external-dns) is installed in the cluster
+- [External DNS](https://github.com/kubernetes-sigs/external-dns) is installed in the cluster
   - if not chart will still work
 
+<img alt="img_6.png" src="./readme_assets/img_6.png" width="80"/>
+<img alt="img_7.png" src="./readme_assets/edns.png" width="80"/>
 
 This chart creates a [ManagedCertificate](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs) 
 - a GKE resource that will provision a TLS certificate
