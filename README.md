@@ -6,7 +6,10 @@
 ![img_1.png](./readme_assets/img_1.png)
 
 ## For google k8s service
-![img_3.png](./readme_assets/img_3.png)
+
+<p align="center">
+<img alt="img_3.png" src="./readme_assets/img_3.png"/>
+</p>
 
 This chart assumes:
 - a GKE cluster with workload identity enabled on cluster
