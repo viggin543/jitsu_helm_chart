@@ -51,8 +51,9 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 
 ### Best install this chart using [argocd](https://argo-cd.readthedocs.io/en/stable/)
 
-<img alt="img_5.png" height="150" src="./readme_assets/img_5.png"/>
-
+<p align="center">
+  <img alt="img_5.png" height="150" src="./readme_assets/img_5.png"/>
+</p>
 ![img.png](./readme_assets/img.png)
 
 
