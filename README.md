@@ -57,6 +57,19 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 
 ![img.png](./readme_assets/img.png)
 
+---
+
+
+```bash
+# view generated k8s manifests
+helm template jitsu_GKE --values jitsu_GKE/values.yaml --debug
+
+# install using helm
+helm install jitsu_GKE --values jitsu_GKE/values.yaml 
+
+# uninstall using helm
+helm uninstall jitsu_GKE
+```
 
 With slight modifications this chart can be installed on any k8s.
 But without the GKE good stuff
