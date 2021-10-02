@@ -1,5 +1,9 @@
 # JITSU helm chart
+![img_1.png](img_1.png)
+
+![img_2.png](img_2.png)
 ## For google k8s service
+![img_3.png](img_3.png)
 
 This chart assumes:
 - a GKE cluster with workload identity enabled on cluster
@@ -31,3 +35,12 @@ Jitsu configurator is created as a ClusterIp service and can be accessed only vi
 - ingress dns record set ( assuming google hosted zones are connected to a public dns )
 - maxmind GCS bucket
   - granting jitsu SA Object Admin role on maxmind bucket
+
+
+### Best install this chart using [argocd](https://argo-cd.readthedocs.io/en/stable/)
+![img.png](img.png)
+
+
+With slight modifications this chart can be installed on any k8s.
+But without the GKE good stuff
+( ManagedCertificate && WorkloadIdentity )
